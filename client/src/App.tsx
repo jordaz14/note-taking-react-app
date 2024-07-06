@@ -2,9 +2,36 @@ function App() {
   return (
     <>
       <div className="flex font-nunito">
-        <nav id="sidebar-left" className="bg-neutral-50 w-[10%] h-screen p-2">
+        <nav
+          id="sidebar-left"
+          className="bg-neutral-50 w-[10%] h-screen p-2 flex flex-col"
+        >
           <h2 className="font-bold">Journals</h2>
-          <ul className="space-y-2">
+          <ul className="space-y-2 overflow-auto flex-1">
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
+            <li>Lorem Ipsum</li>
             <li>Lorem Ipsum</li>
             <li>Lorem Ipsum</li>
             <li>Lorem Ipsum</li>
@@ -38,6 +65,7 @@ function App() {
               Create block
             </button>
           </form>
+          <h3 className="font-bold">Sort By</h3>
         </section>
       </div>
     </>
