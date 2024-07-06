@@ -2,7 +2,9 @@ function App() {
   return (
     <>
       <div>
-        <p>This is my tailwind branch</p>
+        <p className="text-3xl font-bold underline">
+          This is my tailwind branch
+        </p>
       </div>
     </>
   );
