@@ -1,6 +1,9 @@
 function RightSidebar() {
   return (
-    <section id="sidebar-right" className="bg-neutral-50 w-[10%] h-screen p-2">
+    <section
+      id="sidebar-right"
+      className="bg-neutral-50 w-[10%] h-screen p-2 hidden"
+    >
       <h2 className="font-bold">Blocks</h2>
       <form>
         <label>
