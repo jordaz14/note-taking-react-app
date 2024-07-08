@@ -7,6 +7,7 @@ import ScratchSpace from "./components/ScratchSpace";
 
 import threedot from "./assets/threedot.png";
 
+
 function App() {
   const [visible, isVisible] = useState(false);
 
@@ -26,6 +27,7 @@ function App() {
             <WritingBlock />
             <WritingBlock />
             <WritingBlock />
+           
           </div>
           <ScratchSpace />
         </main>
