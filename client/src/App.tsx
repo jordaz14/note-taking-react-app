@@ -56,7 +56,6 @@ function App() {
           <form>
             <label>
               <textarea
-                type="text"
                 className="w-full drop-shadow-sm h-20 p-2"
                 placeholder="Enter text here."
               />
