@@ -1,12 +1,12 @@
-import { useState } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
 
 function WritingBlock() {
   return (
-    <div className={`w-full max-w-[450px] flex gap-2`}>
+    <div className={`w-full`}>
       <ReactTextareaAutosize
-        minRows={5}
-        className="bg-white w-full rounded-md drop-shadow-md hover:drop-shadow-2xl p-2 resize-none"
+        minRows={1}
+        className="bg-white w-full rounded-sm border border-2 p-2 resize-none"
+        placeholder="Enter Text"
       />
     </div>
   );
