@@ -1,7 +1,7 @@
 import ScratchSpace from "./components/ScratchSpace";
 
 import { useState } from "react";
-import WritingBlock from "./components/WritingBlock";
+import ReactTextareaAutosize from "react-textarea-autosize";
 
 function App() {
   const [list, setList] = useState<Number[]>([0]);
@@ -11,7 +11,10 @@ function App() {
   };
 
   const removeFromList = () => {
-    setList([...list.slice(0, -1)]);
+    console.log(list.length);
+    if (list.length > 1) {
+      setList([...list.slice(0, -1)]);
+    }
   };
 
   return (
@@ -28,8 +31,13 @@ function App() {
                 ></input>
                 <button className="bg-blue-100 rounded-sm p-2">Submit</button>
               </div>
-              {list.map(() => (
-                <WritingBlock />
+              {list.map((_, index: any) => (
+                <ReactTextareaAutosize
+                  key={index}
+                  minRows={1}
+                  className="bg-white w-full rounded-sm border-2 p-2 mb-2 resize-none overflow-hidden"
+                  placeholder="Enter Text"
+                />
               ))}
             </form>
             <div className="flex gap-2">
