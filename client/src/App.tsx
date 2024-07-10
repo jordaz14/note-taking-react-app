@@ -7,11 +7,12 @@ function App() {
   const [list, setList] = useState<Number[]>([0]);
 
   const addToList = () => {
-    setList([...list, 0]);
+    if (list.length < 10) {
+      setList([...list, 0]);
+    }
   };
 
   const removeFromList = () => {
-    console.log(list.length);
     if (list.length > 1) {
       setList([...list.slice(0, -1)]);
     }
@@ -35,6 +36,7 @@ function App() {
                 <ReactTextareaAutosize
                   key={index}
                   minRows={1}
+                  maxRows={5}
                   className="bg-white w-full rounded-sm border-2 p-2 mb-2 resize-none overflow-hidden"
                   placeholder="Enter Text"
                 />
