@@ -2,19 +2,41 @@ import ScratchSpace from "./components/ScratchSpace";
 
 import { useState } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import SortableItem from "./components/SortableItem";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 function App() {
-  const [list, setList] = useState<Number[]>([0]);
+  const [blocks, setBlocks] = useState<any[]>([0]);
 
-  const addToList = () => {
-    if (list.length < 10) {
-      setList([...list, 0]);
+  const addToBlocks = () => {
+    if (blocks.length < 10) {
+      setBlocks([...blocks, blocks.length]);
+    }
+    console.log(blocks);
+  };
+
+  const removeFromBlocks = () => {
+    if (blocks.length > 1) {
+      setBlocks([...blocks.slice(0, -1)]);
     }
   };
 
-  const removeFromList = () => {
-    if (list.length > 1) {
-      setList([...list.slice(0, -1)]);
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      setBlocks((items) => {
+        const activeIndex = items.indexOf(active.id);
+        const overIndex = items.indexOf(over.id);
+
+        return arrayMove(items, activeIndex, overIndex);
+      });
     }
   };
 
@@ -23,7 +45,7 @@ function App() {
       <div className="flex font-nunito">
         <main id="canvas" className="flex w-screen h-screen p-4 gap-4">
           <ScratchSpace />
-          <div className="flex-[2] flex flex-col items-center pt-2 pb-2 gap-2 overflow-scroll">
+          <div className="bg-blue-50 flex-[2] flex flex-col items-center pt-2 pb-2 gap-2 overflow-y-hidden">
             <form className="w-full flex flex-col">
               <div className="flex mb-2 gap-4">
                 <input
@@ -32,24 +54,30 @@ function App() {
                 ></input>
                 <button className="bg-blue-100 rounded-sm p-2">Submit</button>
               </div>
-              {list.map((_, index: any) => (
-                <ReactTextareaAutosize
-                  key={index}
-                  minRows={1}
-                  maxRows={5}
-                  className="bg-white w-full rounded-sm border-2 p-2 mb-2 resize-none overflow-hidden"
-                  placeholder="Enter Text"
-                />
-              ))}
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                modifiers={[restrictToVerticalAxis]}
+              >
+                <SortableContext
+                  items={blocks}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {blocks.map((block) => (
+                    <SortableItem key={block} id={block} />
+                  ))}
+                </SortableContext>
+              </DndContext>
             </form>
+
             <div className="flex gap-2">
               <button
-                onClick={removeFromList}
+                onClick={removeFromBlocks}
                 className="bg-white p-1 font-bold"
               >
                 -
               </button>
-              <button onClick={addToList} className="bg-white p-1 font-bold">
+              <button onClick={addToBlocks} className="bg-white p-1 font-bold">
                 +
               </button>
             </div>
