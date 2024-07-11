@@ -7,7 +7,7 @@ function SortableItem(props: any) {
     useSortable({ id: props.id });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
   };
 
@@ -17,8 +17,10 @@ function SortableItem(props: any) {
         key={props.id}
         minRows={1}
         maxRows={5}
-        className="bg-white w-full rounded-sm border-2 p-2 mb-2 resize-none overflow-hidden"
+        rows={5}
+        className="bg-white w-full rounded-sm p-2 mb-2 resize-none overflow-hidden invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none focus:border-r-2 focus:border-r-black"
         placeholder={`Block ${props.id}`}
+        required
       />
       <div
         className=" rounded-md text-black font-bold p-2 height-[20px]"

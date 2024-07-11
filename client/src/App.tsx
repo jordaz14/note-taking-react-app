@@ -49,32 +49,36 @@ function App() {
              w-[500px]"
           >
             <div className="bg-neutral-500 font-bold rounded-md text-white p-2 w-full">
-              Input Prompt Here
+              ChatGPT Prompt Here
             </div>
-            <form className="w-full flex flex-col bg-neutral-100 rounded-md p-3">
+            <form className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3">
               <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
-                  className="bg-white w-full rounded-sm border-2 p-2 resize-none font-bold uppercase"
+                  className="bg-white w-full rounded-sm border-b border-b-black p-2 resize-none font-bold uppercase invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none"
+                  required
+                  maxLength={30}
                 ></input>
                 <button className="bg-neutral-400 hover:bg-neutral-500 font-bold text-white rounded-lg p-2 shadow-md">
                   Submit
                 </button>
               </div>
-              <DndContext
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                modifiers={[restrictToVerticalAxis]}
-              >
-                <SortableContext
-                  items={blocks}
-                  strategy={verticalListSortingStrategy}
+              <div className="flex-[1_1_1px] overflow-y-scroll">
+                <DndContext
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEnd}
+                  modifiers={[restrictToVerticalAxis]}
                 >
-                  {blocks.map((block) => (
-                    <SortableItem key={block} id={block} />
-                  ))}
-                </SortableContext>
-              </DndContext>
+                  <SortableContext
+                    items={blocks}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {blocks.map((block) => (
+                      <SortableItem key={block} id={block} />
+                    ))}
+                  </SortableContext>
+                </DndContext>
+              </div>
             </form>
 
             <div className="flex gap-2">
