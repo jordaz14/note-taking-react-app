@@ -1,7 +1,4 @@
-import ScratchSpace from "./components/ScratchSpace";
-
 import { useState } from "react";
-import ReactTextareaAutosize from "react-textarea-autosize";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -12,13 +9,12 @@ import SortableItem from "./components/SortableItem";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 function App() {
-  const [blocks, setBlocks] = useState<any[]>([0]);
+  const [blocks, setBlocks] = useState<any[]>([1]);
 
   const addToBlocks = () => {
     if (blocks.length < 10) {
-      setBlocks([...blocks, blocks.length]);
+      setBlocks([...blocks, blocks.length + 1]);
     }
-    console.log(blocks);
   };
 
   const removeFromBlocks = () => {
@@ -43,16 +39,24 @@ function App() {
   return (
     <>
       <div className="flex font-nunito">
-        <main id="canvas" className="flex w-screen h-screen p-4 gap-4">
-          <ScratchSpace />
-          <div className="bg-blue-50 flex-[2] flex flex-col items-center pt-2 pb-2 gap-2 overflow-y-hidden">
+        <main
+          id="canvas"
+          className="flex w-screen h-screen p-4 gap-4 justify-center"
+        >
+          <div
+            id="compose"
+            className="bg-neutral-100 flex flex-col items-center p-2 gap-2 overflow-y-hidden
+             w-[500px]"
+          >
             <form className="w-full flex flex-col">
-              <div className="flex mb-2 gap-4">
+              <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
-                  className="bg-white w-full rounded-sm border-2 p-2 resize-none"
+                  className="bg-white w-full rounded-sm border-2 p-2 resize-none font-bold uppercase"
                 ></input>
-                <button className="bg-blue-100 rounded-sm p-2">Submit</button>
+                <button className="bg-neutral-400 hover:bg-neutral-500 font-bold text-white rounded-lg p-2 shadow-md">
+                  Submit
+                </button>
               </div>
               <DndContext
                 collisionDetection={closestCenter}
@@ -82,7 +86,6 @@ function App() {
               </button>
             </div>
           </div>
-          <ScratchSpace />
         </main>
       </div>
     </>
