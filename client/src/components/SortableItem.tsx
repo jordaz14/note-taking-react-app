@@ -12,7 +12,7 @@ function SortableItem(props: any) {
   };
 
   return (
-    <div ref={setNodeRef} style={style} className="flex">
+    <div ref={setNodeRef} style={style} className="flex gap-2">
       <ReactTextareaAutosize
         key={props.id}
         minRows={1}
@@ -20,8 +20,12 @@ function SortableItem(props: any) {
         className="bg-white w-full rounded-sm border-2 p-2 mb-2 resize-none overflow-hidden"
         placeholder={`Block ${props.id}`}
       />
-      <div className="bg-blue-200 rounded-md" {...attributes} {...listeners}>
-        Drag Me
+      <div
+        className=" rounded-md text-black font-bold p-2 height-[20px]"
+        {...attributes}
+        {...listeners}
+      >
+        ::
       </div>
     </div>
   );

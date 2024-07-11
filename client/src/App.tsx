@@ -45,10 +45,13 @@ function App() {
         >
           <div
             id="compose"
-            className="bg-neutral-100 flex flex-col items-center p-2 gap-2 overflow-y-hidden
+            className=" flex flex-col items-center gap-2 overflow-y-hidden
              w-[500px]"
           >
-            <form className="w-full flex flex-col">
+            <div className="bg-neutral-500 font-bold rounded-md text-white p-2 w-full">
+              Input Prompt Here
+            </div>
+            <form className="w-full flex flex-col bg-neutral-100 rounded-md p-3">
               <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
@@ -77,11 +80,14 @@ function App() {
             <div className="flex gap-2">
               <button
                 onClick={removeFromBlocks}
-                className="bg-white p-1 font-bold"
+                className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
               >
                 -
               </button>
-              <button onClick={addToBlocks} className="bg-white p-1 font-bold">
+              <button
+                onClick={addToBlocks}
+                className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+              >
                 +
               </button>
             </div>
