@@ -12,6 +12,8 @@ function App() {
   const [blocks, setBlocks] = useState<any[]>([1]);
 
   const addToBlocks = () => {
+    blocks.map(() => console.log());
+
     if (blocks.length < 10) {
       setBlocks([...blocks, blocks.length + 1]);
     }
