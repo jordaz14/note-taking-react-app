@@ -9,13 +9,15 @@ import SortableItem from "./components/SortableItem";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 function App() {
-  const [blocks, setBlocks] = useState<any[]>([1]);
+  const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
 
   const addToBlocks = () => {
-    blocks.map(() => console.log());
+    const maxId = blocks.reduce((max, block) => {
+      return block.id > max ? block.id : max;
+    }, 0);
 
     if (blocks.length < 10) {
-      setBlocks([...blocks, blocks.length + 1]);
+      setBlocks([...blocks, { id: maxId + 1, value: "" }]);
     }
   };
 
@@ -30,8 +32,8 @@ function App() {
 
     if (active.id !== over.id) {
       setBlocks((items) => {
-        const activeIndex = items.indexOf(active.id);
-        const overIndex = items.indexOf(over.id);
+        const activeIndex = items.findIndex((item) => item.id === active.id);
+        const overIndex = items.findIndex((item) => item.id === over.id);
 
         return arrayMove(items, activeIndex, overIndex);
       });
@@ -76,7 +78,7 @@ function App() {
                     strategy={verticalListSortingStrategy}
                   >
                     {blocks.map((block) => (
-                      <SortableItem key={block} id={block} />
+                      <SortableItem key={block.id} id={block.id} />
                     ))}
                   </SortableContext>
                 </DndContext>
