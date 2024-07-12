@@ -11,7 +11,12 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
 
+  const handleDataChange = (value: any, id: any) => {
+    console.log(value, id);
+  };
+
   const addToBlocks = () => {
+    blocks.map((block) => console.log(block.value));
     const maxId = blocks.reduce((max, block) => {
       return block.id > max ? block.id : max;
     }, 0);
@@ -53,7 +58,7 @@ function App() {
              w-[500px]"
           >
             <div className="bg-neutral-500 font-bold rounded-md text-white p-2 w-full">
-              ChatGPT Prompt Here
+              Writer's Block
             </div>
             <form className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3">
               <div className="flex mb-4 gap-4">
@@ -78,7 +83,11 @@ function App() {
                     strategy={verticalListSortingStrategy}
                   >
                     {blocks.map((block) => (
-                      <SortableItem key={block.id} id={block.id} />
+                      <SortableItem
+                        key={block.id}
+                        id={block.id}
+                        onDataChange={handleDataChange}
+                      />
                     ))}
                   </SortableContext>
                 </DndContext>

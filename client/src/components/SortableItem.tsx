@@ -11,6 +11,10 @@ function SortableItem(props: any) {
     transition,
   };
 
+  const handleChange = (e: any) => {
+    props.onDataChange(e.target.value, props.id);
+  };
+
   return (
     <div ref={setNodeRef} style={style} className="flex gap-2">
       <ReactTextareaAutosize
@@ -21,6 +25,7 @@ function SortableItem(props: any) {
         className="bg-white w-full rounded-sm p-2 mb-2 resize-none overflow-hidden invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none focus:border-r-2 focus:border-r-black"
         placeholder={`Block ${props.id}`}
         required
+        onChange={handleChange}
       />
       <div
         className=" rounded-md text-black font-bold p-2 height-[20px]"
