@@ -26,6 +26,7 @@ function SortableItem(props: any) {
         placeholder={`Block ${props.id}`}
         required
         onChange={handleChange}
+        autoCapitalize="sentences"
       />
       <div
         className=" rounded-md text-black font-bold p-2 height-[20px]"

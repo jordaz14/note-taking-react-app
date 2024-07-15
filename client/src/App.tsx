@@ -12,8 +12,6 @@ function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
 
   const handleDataChange = (value: any, id: any) => {
-    console.log(value, id);
-
     const updatedBlocks = blocks.map((block) => {
       if (id === block.id) {
         return { ...block, value: value };
@@ -25,13 +23,16 @@ function App() {
   };
 
   const addToBlocks = () => {
-    blocks.map((block) => console.log(block.value));
-    const maxId = blocks.reduce((max, block) => {
-      return block.id > max ? block.id : max;
-    }, 0);
+    const emptyBlocks = blocks.filter((block) => block.value === "");
 
-    if (blocks.length < 10) {
-      setBlocks([...blocks, { id: maxId + 1, value: "" }]);
+    if (emptyBlocks.length === 0) {
+      const maxId = blocks.reduce((max, block) => {
+        return block.id > max ? block.id : max;
+      }, 0);
+
+      if (blocks.length < 10) {
+        setBlocks([...blocks, { id: maxId + 1, value: "" }]);
+      }
     }
   };
 
