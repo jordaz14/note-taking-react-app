@@ -71,19 +71,25 @@ function App() {
       <div className="flex font-nunito">
         <main
           id="canvas"
-          className="flex w-screen h-screen p-4 gap-4 justify-center"
+          className="flex w-screen h-screen p-2 gap-4 justify-center"
         >
           <div
             id="compose"
             className=" flex flex-col items-center gap-2 overflow-y-hidden
              w-[500px]"
           >
-            <div className="bg-neutral-500 font-bold rounded-md text-white w-full p-3">
+            <div
+              id="prompt-generator"
+              className="bg-neutral-500 font-bold rounded-md text-white w-full p-3 hidden"
+            >
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
                 ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
                 dolor sit amet, consectetur adipiscing elit.
               </p>
+            </div>
+            <div className="bg-red-50 w-full rounded-lg p-1 h-8 border-2 border-red-200 text-red-500 font-bold shadow-sm">
+              Block Missing Input
             </div>
             <form
               className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3"
