@@ -13,6 +13,15 @@ function App() {
 
   const handleDataChange = (value: any, id: any) => {
     console.log(value, id);
+
+    const updatedBlocks = blocks.map((block) => {
+      if (id === block.id) {
+        return { ...block, value: value };
+      }
+      return block;
+    });
+
+    setBlocks(updatedBlocks);
   };
 
   const addToBlocks = () => {
