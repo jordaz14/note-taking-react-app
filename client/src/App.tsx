@@ -88,8 +88,8 @@ function App() {
                 dolor sit amet, consectetur adipiscing elit.
               </p>
             </div>
-            <div className="bg-red-50 w-full rounded-lg p-1 h-8 border-2 border-red-200 text-red-500 font-bold shadow-sm">
-              Block Missing Input
+            <div className="bg-blue-50 w-full rounded-lg p-1 h-8 border-2 border-blue-200 text-blue-500 font-bold shadow-sm">
+              Notification Bar
             </div>
             <form
               className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3"
@@ -135,14 +135,14 @@ function App() {
               <p className="flex-1 font-bold">{notify}</p>
               <motion.button
                 onClick={removeFromBlocks}
-                className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                className="bg-red-400 hover:bg-red-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
                 whileTap={{ scale: 0.9 }}
               >
                 -
               </motion.button>
               <motion.button
                 onClick={addToBlocks}
-                className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                className="bg-green-400 hover:bg-green-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
                 whileTap={{ scale: 0.9 }}
               >
                 +
