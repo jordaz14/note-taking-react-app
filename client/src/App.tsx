@@ -10,8 +10,10 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
+  const [notify, setNotify] = useState("");
 
   const handleDataChange = (value: any, id: any) => {
+    setNotify("");
     const updatedBlocks = blocks.map((block) => {
       if (id === block.id) {
         return { ...block, value: value };
@@ -33,6 +35,8 @@ function App() {
       if (blocks.length < 10) {
         setBlocks([...blocks, { id: maxId + 1, value: "" }]);
       }
+    } else {
+      setNotify("Block missing input.");
     }
   };
 
@@ -104,7 +108,8 @@ function App() {
               </div>
             </form>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 w-full items-center">
+              <p className="flex-1 font-bold">{notify}</p>
               <button
                 onClick={removeFromBlocks}
                 className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
