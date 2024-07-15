@@ -1,6 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import ReactTextareaAutosize from "react-textarea-autosize";
+import { motion } from "framer-motion";
 
 function SortableItem(props: any) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -28,13 +29,14 @@ function SortableItem(props: any) {
         onChange={handleChange}
         autoCapitalize="sentences"
       />
-      <div
+      <motion.div
         className=" rounded-md text-black font-bold p-2 height-[20px]"
         {...attributes}
         {...listeners}
+        whileTap={{ scale: 0.7 }}
       >
         ::
-      </div>
+      </motion.div>
     </div>
   );
 }

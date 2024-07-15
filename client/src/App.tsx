@@ -7,13 +7,13 @@ import {
 } from "@dnd-kit/sortable";
 import SortableItem from "./components/SortableItem";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { motion } from "framer-motion";
 
 function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
   const [notify, setNotify] = useState("");
 
   const handleDataChange = (value: any, id: any) => {
-    setNotify("");
     const updatedBlocks = blocks.map((block) => {
       if (id === block.id) {
         return { ...block, value: value };
@@ -37,6 +37,7 @@ function App() {
       }
     } else {
       setNotify("Block missing input.");
+      setTimeout(() => setNotify(""), 1000);
     }
   };
 
@@ -59,6 +60,12 @@ function App() {
     }
   };
 
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+
+    console.log("Form Submitted!", blocks);
+  };
+
   return (
     <>
       <div className="flex font-nunito">
@@ -71,10 +78,17 @@ function App() {
             className=" flex flex-col items-center gap-2 overflow-y-hidden
              w-[500px]"
           >
-            <div className="bg-neutral-500 font-bold rounded-md text-white p-2 w-full">
-              Writer's Block
+            <div className="bg-neutral-500 font-bold rounded-md text-white w-full p-3">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit.
+              </p>
             </div>
-            <form className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3">
+            <form
+              className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3"
+              onSubmit={handleFormSubmit}
+            >
               <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
@@ -82,9 +96,12 @@ function App() {
                   required
                   maxLength={30}
                 ></input>
-                <button className="bg-neutral-400 hover:bg-neutral-500 font-bold text-white rounded-lg p-2 shadow-md">
+                <motion.button
+                  className="bg-neutral-400 hover:bg-neutral-500 font-bold text-white rounded-lg p-2 shadow-md"
+                  whileTap={{ scale: 0.9 }}
+                >
                   Submit
-                </button>
+                </motion.button>
               </div>
               <div className="flex-[1_1_1px] overflow-y-scroll">
                 <DndContext
@@ -110,18 +127,20 @@ function App() {
 
             <div className="flex gap-2 w-full items-center">
               <p className="flex-1 font-bold">{notify}</p>
-              <button
+              <motion.button
                 onClick={removeFromBlocks}
                 className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                whileTap={{ scale: 0.9 }}
               >
                 -
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={addToBlocks}
                 className="bg-neutral-400 hover:bg-neutral-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                whileTap={{ scale: 0.9 }}
               >
                 +
-              </button>
+              </motion.button>
             </div>
           </div>
         </main>
