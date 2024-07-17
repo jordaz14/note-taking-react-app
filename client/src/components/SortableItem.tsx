@@ -19,7 +19,8 @@ function SortableItem(props: any) {
 
   const handleInputValueChange = (e: any) => {
     const inputValue = e.target.value;
-    setText(autoCapitalizeSentences(inputValue));
+    const capitalizedInputValue = autoCapitalizeSentences(inputValue);
+    limitTextArea(capitalizedInputValue);
     props.onInputValueChange(e.target.value, props.id);
   };
 
@@ -28,6 +29,15 @@ function SortableItem(props: any) {
       /(^\w{1}|\.\s+\w{1}|\!\s+\w{1}|\?\s+\w{1})/g,
       (match) => match.toUpperCase()
     );
+  };
+
+  const limitTextArea = (inputText: string) => {
+    const lines = inputText.split("\n");
+    if (lines.length <= 5) {
+      setText(inputText);
+    } else {
+      setText(lines.slice(0, 5).join("\n"));
+    }
   };
 
   const handleKeyDown = (e: any) => {
@@ -59,7 +69,7 @@ function SortableItem(props: any) {
         key={props.id}
         minRows={1}
         maxRows={5}
-        rows={5}
+        maxLength={250}
         className="bg-white w-full rounded-md p-2 mb-2 resize-none overflow-hidden invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none"
         placeholder={`Block ${props.id}`}
         required
