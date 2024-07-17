@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 function SortableItem(props: any) {
   const [keys, setKeys] = useState<string[]>([]);
   const [keyPressed, setKeyPressed] = useState(null);
+  const [text, setText] = useState("");
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: props.id });
@@ -17,7 +18,16 @@ function SortableItem(props: any) {
   };
 
   const handleInputValueChange = (e: any) => {
+    const inputValue = e.target.value;
+    setText(autoCapitalizeSentences(inputValue));
     props.onInputValueChange(e.target.value, props.id);
+  };
+
+  const autoCapitalizeSentences = (inputText: string) => {
+    return inputText.replace(
+      /(^\w{1}|\.\s+\w{1}|\!\s+\w{1}|\?\s+\w{1})/g,
+      (match) => match.toUpperCase()
+    );
   };
 
   const handleKeyDown = (e: any) => {
@@ -45,6 +55,7 @@ function SortableItem(props: any) {
   return (
     <div ref={setNodeRef} style={style} className="flex gap-2">
       <ReactTextareaAutosize
+        value={text}
         key={props.id}
         minRows={1}
         maxRows={5}
