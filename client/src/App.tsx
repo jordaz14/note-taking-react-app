@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -13,7 +13,7 @@ function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
   const [notify, setNotify] = useState("");
 
-  const handleDataChange = (value: any, id: any) => {
+  const handleInputValueChange = (value: any, id: any) => {
     const updatedBlocks = blocks.map((block) => {
       if (id === block.id) {
         return { ...block, value: value };
@@ -22,6 +22,15 @@ function App() {
     });
 
     setBlocks(updatedBlocks);
+  };
+
+  const onKeyDown = (shiftPlus: boolean) => {
+    if (shiftPlus === true) {
+      setNotify("great success!");
+      addToBlocks();
+    } else {
+      setNotify("key pressed");
+    }
   };
 
   const addToBlocks = () => {
@@ -68,7 +77,7 @@ function App() {
 
   return (
     <>
-      <div className="flex font-nunito">
+      <div className="flex font-Lato">
         <main
           id="canvas"
           className="flex w-screen h-screen p-2 gap-4 justify-center"
@@ -88,22 +97,20 @@ function App() {
                 dolor sit amet, consectetur adipiscing elit.
               </p>
             </div>
-            <div className="bg-blue-50 w-full rounded-lg p-1 h-8 border-2 border-blue-200 text-blue-500 font-bold shadow-sm">
-              Notification Bar
-            </div>
+
             <form
-              className="w-full flex-1 flex flex-col bg-neutral-200 rounded-md p-3"
+              className="w-full flex-1 flex flex-col bg-gray-200 rounded-md shadow-sm p-3"
               onSubmit={handleFormSubmit}
             >
               <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
-                  className="bg-white w-full rounded-sm border-b border-b-black p-2 resize-none font-bold uppercase invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none"
+                  className="bg-white w-full rounded-md  p-2 resize-none font-bold uppercase invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none"
                   required
                   maxLength={30}
                 ></input>
                 <motion.button
-                  className="bg-neutral-400 hover:bg-neutral-500 font-bold text-white rounded-lg p-2 shadow-md"
+                  className="bg-gray-400 hover:bg-gray-500 font-bold text-white rounded-lg p-2 shadow-md"
                   whileTap={{ scale: 0.9 }}
                 >
                   Submit
@@ -123,7 +130,8 @@ function App() {
                       <SortableItem
                         key={block.id}
                         id={block.id}
-                        onDataChange={handleDataChange}
+                        onInputValueChange={handleInputValueChange}
+                        onKeyDownInput={onKeyDown}
                       />
                     ))}
                   </SortableContext>
@@ -135,14 +143,14 @@ function App() {
               <p className="flex-1 font-bold">{notify}</p>
               <motion.button
                 onClick={removeFromBlocks}
-                className="bg-red-400 hover:bg-red-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                className="bg-gray-400 hover:bg-gray-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
                 whileTap={{ scale: 0.9 }}
               >
                 -
               </motion.button>
               <motion.button
                 onClick={addToBlocks}
-                className="bg-green-400 hover:bg-green-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                className="bg-gray-400 hover:bg-gray-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
                 whileTap={{ scale: 0.9 }}
               >
                 +
