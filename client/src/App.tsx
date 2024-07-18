@@ -103,18 +103,18 @@ function App() {
             </div>
 
             <form
-              className="w-full flex-1 flex flex-col bg-gray-200 rounded-md shadow-md p-3"
+              className="w-full flex-1 flex flex-col bg-gray-300 rounded-md shadow-md p-3"
               onSubmit={handleFormSubmit}
             >
               <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
-                  className="bg-white w-full rounded-md  p-2 resize-none font-bold uppercase invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none"
+                  className="bg-white w-full rounded-md  p-2 resize-none font-bold uppercase invalid:bg-gray-50 invalid:placeholder-gray-300 focus:outline-none"
                   required
                   maxLength={30}
                 ></input>
                 <motion.button
-                  className="bg-gray-400 hover:bg-gray-500 font-bold text-white rounded-lg p-2 shadow-md"
+                  className="bg-gray-500 hover:bg-gray-600 font-bold text-white rounded-lg p-2 shadow-md"
                   whileTap={{ scale: 0.9 }}
                 >
                   Submit

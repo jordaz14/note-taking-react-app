@@ -70,7 +70,7 @@ function SortableItem(props: any) {
         minRows={1}
         maxRows={5}
         maxLength={250}
-        className="bg-white w-full rounded-md p-2 mb-2 resize-none overflow-hidden invalid:bg-neutral-50 invalid:placeholder-neutral-300 focus:outline-none"
+        className="bg-white w-full rounded-md p-2 mb-2 resize-none overflow-hidden invalid:bg-gray-50 invalid:placeholder-gray-300 focus:outline-none"
         placeholder={`Block ${props.id}`}
         required
         onChange={handleInputValueChange}
@@ -79,7 +79,7 @@ function SortableItem(props: any) {
         onKeyUp={handleKeyUp}
       />
       <motion.div
-        className=" rounded-md text-black font-bold p-2 height-[20px]"
+        className=" rounded-md text-gray-600 font-bold p-2 height-[20px]"
         {...attributes}
         {...listeners}
         whileTap={{ scale: 0.7 }}
