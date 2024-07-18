@@ -13,8 +13,8 @@ function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
   const [notify, setNotify] = useState("");
   const [textCount, setTextCount] = useState({
-    blocks: 10,
-    characters: 250,
+    blocksText: 10,
+    charactersText: 250,
   });
 
   const handleInputValueChange = (value: any, id: any) => {
@@ -57,6 +57,7 @@ function App() {
   const removeFromBlocks = () => {
     if (blocks.length > 1) {
       setBlocks([...blocks.slice(0, -1)]);
+      setTextCount({ ...textCount, blocksText: blocks.length - 1 });
     }
   };
 
@@ -145,8 +146,8 @@ function App() {
 
             <div className="flex gap-2 w-full items-center">
               <p className="flex-1 font-bold text-xs pl-2 text-gray-500">
-                {textCount.blocks} Blocks / {textCount.characters} Characters
-                Remaining
+                {textCount.blocksText} Blocks / {textCount.charactersText}{" "}
+                Characters Remaining
               </p>
               <motion.button
                 onClick={removeFromBlocks}
