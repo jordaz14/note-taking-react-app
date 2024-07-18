@@ -12,6 +12,10 @@ import { motion } from "framer-motion";
 function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
   const [notify, setNotify] = useState("");
+  const [textCount, setTextCount] = useState({
+    blocks: 10,
+    characters: 250,
+  });
 
   const handleInputValueChange = (value: any, id: any) => {
     const updatedBlocks = blocks.map((block) => {
@@ -99,7 +103,7 @@ function App() {
             </div>
 
             <form
-              className="w-full flex-1 flex flex-col bg-gray-200 rounded-md shadow-sm p-3"
+              className="w-full flex-1 flex flex-col bg-gray-200 rounded-md shadow-md p-3"
               onSubmit={handleFormSubmit}
             >
               <div className="flex mb-4 gap-4">
@@ -140,7 +144,10 @@ function App() {
             </form>
 
             <div className="flex gap-2 w-full items-center">
-              <p className="flex-1 font-bold">{notify}</p>
+              <p className="flex-1 font-bold text-xs pl-2 text-gray-500">
+                {textCount.blocks} Blocks / {textCount.characters} Characters
+                Remaining
+              </p>
               <motion.button
                 onClick={removeFromBlocks}
                 className="bg-gray-400 hover:bg-gray-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
