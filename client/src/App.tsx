@@ -13,7 +13,7 @@ function App() {
   const [blocks, setBlocks] = useState<any[]>([{ id: 1, value: "" }]);
   const [notify, setNotify] = useState("");
   const [textCount, setTextCount] = useState({
-    blocksText: 10,
+    blocksText: 9,
     charactersText: 250,
   });
 
@@ -38,37 +38,53 @@ function App() {
   };
 
   const addToBlocks = () => {
+    //Find all blocks with an empty input value
     const emptyBlocks = blocks.filter((block) => block.value === "");
 
+    //Checks if all blocks are populated with a value
     if (emptyBlocks.length === 0) {
+      //Find max id of all blocks in array; every new block increments off of maxId
       const maxId = blocks.reduce((max, block) => {
         return block.id > max ? block.id : max;
       }, 0);
 
+      //Checks if there are less than 10 blocks in blocks array
       if (blocks.length < 10) {
         setBlocks([...blocks, { id: maxId + 1, value: "" }]);
+
+        ////Update count tracker for remaining blocks available
+        setTextCount({ ...textCount, blocksText: 9 - blocks.length });
       }
-    } else {
+    }
+    //Notifies user if a block remains unpopulated
+    else {
       setNotify("Block missing input.");
       setTimeout(() => setNotify(""), 1000);
     }
   };
 
   const removeFromBlocks = () => {
+    //Check if at least one block is visible
     if (blocks.length > 1) {
+      //Remove last block in array
       setBlocks([...blocks.slice(0, -1)]);
-      setTextCount({ ...textCount, blocksText: blocks.length - 1 });
+
+      //Update count tracker for remaining blocks available
+      setTextCount({ ...textCount, blocksText: 9 - blocks.length + 2 });
     }
   };
 
-  const handleDragEnd = (event: any) => {
-    const { active, over } = event;
+  const handleDragEnd = (e: any) => {
+    const { active, over } = e;
 
+    //Check that the selected item is hovering over a different item in the blocks array
     if (active.id !== over.id) {
       setBlocks((items) => {
+        //Find the index of both the selected item and that hovered over item
         const activeIndex = items.findIndex((item) => item.id === active.id);
         const overIndex = items.findIndex((item) => item.id === over.id);
 
+        //Switch index position of two elements
         return arrayMove(items, activeIndex, overIndex);
       });
     }
