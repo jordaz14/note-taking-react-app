@@ -87,7 +87,7 @@ body {
 
 body {
   background-image: url(./assets/crumpled.jpg);
-  background-color: rgba(255, 255, 255, 0.90);
+  background-color: rgba(255, 255, 255, 0.6);
   background-blend-mode: lighten;
 }
 

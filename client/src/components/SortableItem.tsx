@@ -63,7 +63,7 @@ function SortableItem(props: any) {
   }, [keys]);
 
   return (
-    <div ref={setNodeRef} style={style} className="flex gap-2">
+    <div ref={setNodeRef} style={style} className="flex gap-2 text-md">
       <ReactTextareaAutosize
         value={text}
         key={props.id}

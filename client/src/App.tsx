@@ -120,7 +120,7 @@ function App() {
             </div>
 
             <form
-              className="w-full flex-1 flex flex-col bg-gray-300 rounded-md shadow-md p-3"
+              className="w-full flex-1 flex flex-col bg-gray-300 rounded-md shadow-md p-3 border-[1px] border-gray-500"
               onSubmit={handleFormSubmit}
             >
               <div className="flex mb-4 gap-4">
@@ -167,14 +167,14 @@ function App() {
               </p>
               <motion.button
                 onClick={removeFromBlocks}
-                className="bg-gray-400 hover:bg-gray-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                className="bg-gray-500 hover:bg-gray-600 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
                 whileTap={{ scale: 0.9 }}
               >
                 -
               </motion.button>
               <motion.button
                 onClick={addToBlocks}
-                className="bg-gray-400 hover:bg-gray-500 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
+                className="bg-gray-500 hover:bg-gray-600 p-1 w-[30px] font-bold text-white rounded-md shadow-md"
                 whileTap={{ scale: 0.9 }}
               >
                 +
