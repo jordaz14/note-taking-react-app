@@ -99,25 +99,18 @@ function App() {
 
   return (
     <>
-      <div className="flex font-Lato">
-        <main
-          id="canvas"
-          className="flex w-screen h-screen p-2 gap-4 justify-center"
-        >
+      <div className="flex font-Lato bg-red-50 w-screen h-screen justify-center">
+        <main id="canvas" className="flex p-2 gap-4 justify-center bg-blue-50">
           <div
             id="compose"
-            className=" flex flex-col items-center gap-2 overflow-y-hidden
+            className=" flex flex-col items-center gap-2 overflow-y-hidden bg-green-50
              w-[500px]"
           >
             <div
               id="prompt-generator"
-              className="bg-neutral-500 font-bold rounded-md text-white w-full p-3 hidden"
+              className="bg-white font-bold rounded-md text-gray-500 border-[1px] border-gray-500 w-full p-2 text-xs hidden"
             >
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit.
-              </p>
+              <p>! Blocks missing input</p>
             </div>
 
             <form
@@ -183,6 +176,15 @@ function App() {
             </div>
           </div>
         </main>
+        <div>
+          <p className="font-bold">Entries</p>
+          <ul>
+            <li>Entry 1</li>
+            <li>Entry 2</li>
+            <li>Entry 3</li>
+            <li>Entry 4</li>
+          </ul>
+        </div>
       </div>
     </>
   );
