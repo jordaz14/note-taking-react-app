@@ -20,6 +20,7 @@ function App() {
   const handleInputValueChange = (value: any, id: any) => {
     const updatedBlocks = blocks.map((block) => {
       if (id === block.id) {
+        setTextCount({ ...textCount, charactersText: 250 - value.length });
         return { ...block, value: value };
       }
       return block;
@@ -126,7 +127,7 @@ function App() {
               <div className="flex mb-4 gap-4">
                 <input
                   placeholder="Enter Title"
-                  className="bg-white w-full rounded-md  p-2 resize-none font-bold uppercase invalid:bg-gray-50 invalid:placeholder-gray-300 focus:outline-none"
+                  className="bg-white w-full rounded-md  p-2 resize-none font-bold uppercase invalid:bg-gray-100 invalid:placeholder-gray-300 focus:outline-none"
                   required
                   maxLength={30}
                 ></input>

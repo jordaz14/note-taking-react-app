@@ -70,7 +70,7 @@ function SortableItem(props: any) {
         minRows={1}
         maxRows={5}
         maxLength={250}
-        className="bg-white w-full rounded-md p-2 mb-2 resize-none overflow-hidden invalid:bg-gray-50 invalid:placeholder-gray-300 focus:outline-none"
+        className="bg-white w-full rounded-md p-2 mb-2 resize-none overflow-hidden invalid:bg-gray-100 invalid:placeholder-gray-300 focus:outline-none"
         placeholder={`Block ${props.id}`}
         required
         onChange={handleInputValueChange}
